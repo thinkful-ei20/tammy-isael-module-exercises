@@ -48,6 +48,11 @@ const store = (function(){
     let index = items.findIndex(item => item.id === id);
     items.splice(index,1);
   };
+  const toggleCheckedFilter = function (filterCheck) {
+    if (this.hideCheckedItems === true) {
+      
+    }
+  }
 
   return {
     items: items,
