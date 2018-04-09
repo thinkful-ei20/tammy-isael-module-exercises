@@ -5,7 +5,15 @@
 $(document).ready(function() {
   //console.log(store);
   //console.log(foo);
-  const itemNames = [ '', 'apples', 'pears' ];
+  
+
+  shoppingList.bindEventListeners();
+  shoppingList.render();
+  console.log(Item);
+  console.log(foo);
+});
+/*2.
+const itemNames = [ '', 'apples', 'pears' ];
   itemNames.forEach(name => {
     try {
       Item.validateName(name);
@@ -16,9 +24,4 @@ $(document).ready(function() {
   });
   console.log(itemNames);
   shoppingList.render();
-
-  shoppingList.bindEventListeners();
-  shoppingList.render();
-  console.log(Item);
-  console.log(foo);
-});
+*/
