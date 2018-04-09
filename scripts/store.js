@@ -25,9 +25,12 @@ const store = (function(){
     this.items.push(Item.create(name));
   };
 
-  const findAndToggleChecked= function(id){
-    let checked = this.findById(id).checked;
-    checked = !checked;
+  const findAndToggleChecked = function(id){
+    const checked = this.findById(id).checked;
+
+    checked === true ? this.findById(id).checked = false : this.findById(id).checked = true;
+    
+    console.log(this.findById(id).checked);
   };
 
   const findAndUpdateName = function(id, newName){
@@ -38,11 +41,11 @@ const store = (function(){
       console.log(`cannot update name: ${error.message}`);
     }
     findById(id).name = newName;
+    //shoppingList.render();
   };
 
-  const findaAndDelete = function(id){
-    let deleteItem = items.filter(item => item.id === id);
-    let index = items.findIndex(deleteItem);
+  const findAndDelete = function(id){
+    let index = items.findIndex(item => item.id === id);
     items.splice(index,1);
   };
 
@@ -53,5 +56,7 @@ const store = (function(){
     findById: findById,
     addItem: addItem,
     findAndToggleChecked,
+    findAndUpdateName,
+    findAndDelete
   };
 }());
