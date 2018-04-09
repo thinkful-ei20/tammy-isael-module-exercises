@@ -9,8 +9,8 @@ const store = (function(){
     { id: cuid(), name: 'milk', checked: true },
     { id: cuid(), name: 'bread', checked: false }
   ];
-  const hideCheckedItems = false;
-  const searchTerm = '';
+  let hideCheckedItems = false;
+  let searchTerm = '';
 
   const findById = function(id){
     return store.items.find(item => item.id === id);
@@ -20,13 +20,13 @@ const store = (function(){
     try{
       Item.validateName(name);
     }catch(error){
-      throw error;
+      //throw error;
     }
     this.items.push(Item.create(name));
   };
 
   const findAndToggleChecked = function(id){
-    const checked = this.findById(id).checked;
+    let checked = this.findById(id).checked;
 
     checked === true ? this.findById(id).checked = false : this.findById(id).checked = true;
     
@@ -48,11 +48,14 @@ const store = (function(){
     let index = items.findIndex(item => item.id === id);
     items.splice(index,1);
   };
-  const toggleCheckedFilter = function (filterCheck) {
-    if (this.hideCheckedItems === true) {
-      
-    }
-  }
+
+  const toggleCheckedFilter = function () {
+    this.hideCheckedItems = !this.hideCheckedItems;
+  };
+
+  const setSearchTerm = function (search){
+    this.searchTerm = search;
+  };
 
   return {
     items: items,
@@ -62,6 +65,8 @@ const store = (function(){
     addItem: addItem,
     findAndToggleChecked,
     findAndUpdateName,
-    findAndDelete
+    findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm
   };
 }());
